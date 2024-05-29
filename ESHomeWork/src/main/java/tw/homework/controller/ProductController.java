@@ -32,4 +32,9 @@ public class ProductController {
 		return productService.productInsert(dto);	
 	}
 	
+	@PostMapping("/product/findCustomer")
+	public List<ProductFindDto> findAllCustomer(){
+		
+		return productService.findAllCustomer();
+	}
 }

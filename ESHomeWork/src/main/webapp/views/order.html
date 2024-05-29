@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>營業紀錄</title>
+
+    <!-- 樣板需要的 css 資源-->
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/cda74843f9.js" crossorigin="anonymous"></script>
+    <!-- 此處已包含 Bootstrap css 函式庫, 各自所需函式庫請用 CDN 方式引入(import Vue 方式會有問題) -->
+    <link rel="stylesheet" href="/css/sb-admin-2.min.css">
+    <!-- 模板客製化設定 -->
+    <link rel="stylesheet" href="/css/sb-admin-2-custom-restaurant.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.5"></script>
+<script src="https://www.unpkg.com/vue@3.3.5/dist/vue.global.prod.js"></script>
+<script src="https://www.unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body id="aaa">
+
+    <!-- 模板外層容器 -->
+    <div id="wrapper">
+
+        <!-- 側邊 Sidebar -->
+        <ul class="navbar-nav sidebar sidebar-dark accordion bg-deep-blue" id="accordionSidebar">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                <div class="sidebar-brand-text mx-3">回家作業</div>
+            </a>
+
+            <hr class="sidebar-divider my-0">
+
+            <li class="nav-item">
+                <a class="nav-link" href="product.html">
+                    <span>商品預覽</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="order.html">
+
+                    <span>新增訂單功能</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="orderDetail.html">
+
+                    <span>顧客訂單預覽</span></a>
+            </li>
+
+        </ul>
+
+        <!-- 主內容區域，包含上方導覽列與各網頁內容 -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <!-- 上方導覽列 -->
+                <nav class="navbar navbar-expand topbar mb-4 static-top"
+                    style="display: flex; justify-content: space-between;">
+                    <div class="temp"></div>
+                
+                </nav>
+
+              
+                <h1>商品選擇與訂購</h1>
+               
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>勾選</th> 
+                            <th>商品名稱</th>
+                            <th>金額</th>
+                            <th>已有數量</th>
+                            <th>購買數量</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(product, index) in product" :key="index">
+                            <td>
+                                <input type="checkbox" :id="'selectProduct' + (index + 1)" @change="updateOrderProductList(product, $event.target.checked)">
+                            </td>
+                            <td>{{ product.productName }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>
+                                <input v-model="product.selectedQuantity" type="number" :id="'quantity' + (index + 1)" name="quantity" min="1" :max="product.quantity" @input="checkQuantity(product, $event.target)">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" @click="callInsert" :disabled="!canCreateOrder">建立訂單</button>
+                <span>總金額: {{ totalPrice }}</span>
+
+            </div>
+
+
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>回家功課</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+  
+    <!-- 模板需要的 js 資源 -->
+    <script src="/js/order.js"></script>
+    <script src="/js/jquery-3.7.1.js"></script>
+    <script src="/js/bootstrap-4.6.2.bundle.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

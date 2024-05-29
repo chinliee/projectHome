@@ -28,7 +28,7 @@ public class ProductService {
 		
 		ProductFindDto productFindDto = new ProductFindDto(); 
 		
-		productFindDto.setProductID(product.getProductID());
+		productFindDto.setProductId(product.getProductId());
 		productFindDto.setProductName(product.getProductName());
 		productFindDto.setPrice(product.getPrice());
 		productFindDto.setQuantity(product.getQuantity());
@@ -44,7 +44,7 @@ public class ProductService {
 		
 		Product product = new Product();
 		
-		product.setProductID(dto.getProductID());
+		product.setProductId(dto.getProductId());
 		product.setProductName(dto.getProductName());
 		product.setPrice(dto.getPrice());
 		product.setQuantity(dto.getQuantity());
@@ -52,6 +52,32 @@ public class ProductService {
 		return productRepository.save(product);
 		
 	}
+	
+public List<ProductFindDto> findAllCustomer(){
+		
+		List<Product> productlList = productRepository.findAll();
+		
+		List<ProductFindDto> productFindDtolList = new ArrayList<>();
+		for(Product product : productlList) {
+		
+		
+		if(product.getQuantity() >= 1) {
+			ProductFindDto productFindDto = new ProductFindDto(); 
+			productFindDto.setProductId(product.getProductId());
+			productFindDto.setProductName(product.getProductName());
+			productFindDto.setPrice(product.getPrice());
+			productFindDto.setQuantity(product.getQuantity());
+			
+			productFindDtolList.add(productFindDto);			
+		}
+		
+		
+		}	
+		return productFindDtolList;
+		
+	}
+	
+	
 	
 	
 	

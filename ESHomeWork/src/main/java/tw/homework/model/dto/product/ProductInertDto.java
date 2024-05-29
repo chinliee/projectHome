@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ProductInertDto {
 
-	private String productID;
+	private String productId;
 	
 	private String productName;
 		
