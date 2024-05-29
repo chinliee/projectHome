@@ -12,7 +12,6 @@ import tw.homework.model.entity.OrderDetail;
 import tw.homework.service.orderDetailService;
 
 @RestController
-@CrossOrigin
 public class OrderDetailController {
 
 	@Autowired

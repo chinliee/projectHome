@@ -14,7 +14,6 @@ import tw.homework.model.entity.Product;
 import tw.homework.service.ProductService;
 
 @RestController
-@CrossOrigin
 public class ProductController {
 
 	@Autowired

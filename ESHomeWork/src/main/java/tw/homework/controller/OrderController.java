@@ -17,7 +17,6 @@ import tw.homework.service.OrderService;
 
 
 @RestController
-@CrossOrigin
 public class OrderController {
 
 	@Autowired
